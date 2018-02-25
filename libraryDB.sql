@@ -1,22 +1,4 @@
-/*========================================
-	DROP ALL TABLES AND DATABASE (TABLES MUST
-	BE DROPPED IN ORDER SHOWN TO AVOID FOREIGN
-	KEY CONFLICTS
-==========================================*/
 
-
-DROP TABLE book_authors;
-DROP TABLE book_loans;
-DROP TABLE borrower;
-DROP TABLE book_copies;
-DROP TABLE library_branch;
-DROP TABLE book;
-DROP TABLE publisher;
-DROP DATABASE LIBRARY;
-
-/*========================================
-	END DROP ALL TABLES AND DATABASE
-==========================================*/
 
 /*========================================
 		CREATE DATABASE "LIBRARY"
@@ -365,14 +347,14 @@ GO
 					JOIN book_copies ON book.bookId=book_copies.bookId
 					JOIN library_branch ON book_copies.branchId=library_branch.branchId
 					WHERE book.title LIKE (@title + '%');
-				END
+				END 
 GO
 ------------------------------------------------------------------------------------------------------------
 
 GO
 	CREATE PROC noBooksOut		/* Query checks LIBRARY to see which borrowers have no books checked out */
 		AS
-			SELECT name FROM borrowers
+			SELECT name FROM borrower
 			WHERE CardNo NOT IN(SELECT CardNo FROM book_loans);
 GO
 
@@ -429,11 +411,11 @@ GO
 /* Procedure retrieves the total number of books loaned out from a particular library branch */
 
 GO
-	CREATE PROCEDURE howManyBooksOutFromBranch @branch VARCHAR(20)
+	CREATE PROCEDURE howManyBooksOutFromBranch
 	AS
-		SELECT COUNT (book_loans.bookId) AS Number_of_books_out_from_selected_branch FROM book_loans 
+		SELECT branchName 'Library Branch', COUNT (book_loans.bookId) AS '# of Books Out' FROM book_loans 
 		JOIN library_branch ON book_loans.branchId=library_branch.branchId
-		WHERE library_branch.branchName=@branch;
+		GROUP BY branchName;
 GO
 
 -------------------------------------------------------------------------------------------------------------
