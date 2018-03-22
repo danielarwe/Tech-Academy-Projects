@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="./css/pizza_style.css">
+		<title>Pizza Fever!</title> 
+	</head>
+	<body>
+		<div class='header'>
+			<h1>PIZZA FEVER</h1>
+			<h3><em>Have you got the fever? Place your order below.</em></h3>
+		</div>
+	
+			<!-- SIZE SELECTION -->
+		<div class='size'>
+			<h3>Pizza Size:<br></h3>
+					<input class='pizzaSize' id="size-personal" type="radio" name="size" value="personal"/> Personal<br>
+					<input class='pizzaSize' id="size-medium" type="radio" name="size" value="medium"/> Medium<br>
+					<input class='pizzaSize' id="size-large" type="radio" name="size" value="large" checked=true/> Large<br>
+					<input class='pizzaSize' id="size-xl" type="radio" name="size" value="xl"/> Extra Large<br>
+		</div>
+
+			<!-- CRUST SELECTION -->
+		<div class='crust'>
+			<h3>Crust Type:<br></h3>
+					<input class="pizzaCrust" id="crust-plain" type="radio" name="crust" value="plain" checked=true/> Plain Crust<br>
+					<input class="pizzaCrust" id="crust-garlicbutter" type="radio" name="crust" value="garlic butter"/> Garlic Butter Crust<br>
+					<input class="pizzaCrust" id="crust-stuffed" type="radio" name="crust" value="cheese-stuffed"/> Cheese-Stuffed Crust<br>
+					<input class="pizzaCrust" id="crust-spicy" type="radio" name="crust" value="spicy"/> Spicy Crust<br>
+					<input class="pizzaCrust" id="crust-special" type="radio" name="crust" value="house special"/> House Special Crust<br>
+		</div>
+			<!-- SAUCE SELECTION -->
+		<div class='sauce'>
+			<h3>Sauce Type:<br></h3>		
+					<input class="pizzaSauce" id="sauce-marinara" type="radio" name="sauce" value="marinara" checked=true/> Marinara Sauce<br>
+					<input class="pizzaSauce" id="sauce-white" type="radio" name="sauce" value="white"/> White Sauce<br>
+					<input class="pizzaSauce" class="pizzaSauce" id="sauce-barbeque" type="radio" name="sauce" value="barbeque"/> Barbeque Sauce<br>
+					<input class="pizzaSauce" id="sauce-nosauce" type="radio" name="sauce" value="no"/> No Sauce<br>
+		</div>
+
+			<!-- CHEESE SELECTION -->
+		<div class='cheese'>
+			<h3>Cheese Amount:<br></h3>
+					<input class="pizzaCheese" id="cheese-regular" type="radio" name="cheese" value="regular" checked=true/> Regular Cheese<br>
+					<input class="pizzaCheese" id="cheese-extra" type="radio" name="cheese" value="extra"/> Extra Cheese<br>
+					<input class="pizzaCheese" id="cheese-nocheese" type="radio" name="cheese" value="no"/> No Cheese<br>
+		</div>
+			<!-- MEATS SELECTION -->
+		<div class='meat'>
+			<h3>Meats:<br></h3>
+					<input class="pizzaMeat" id="meat-pepperoni" type="checkbox" name="meat" value="pepperoni"/> Pepperoni&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+					<input class="pizzaMeat" id="meat-sausage" type="checkbox" name="meat" value="sausage"/> Sausage<br>
+					<input class="pizzaMeat" id="meat-canadianbacon" type="checkbox" name="meat" value="Canadian bacon"/> Canadian Bacon
+					<input class="pizzaMeat" id="meat-groundbeef" type="checkbox" name="meat" value="ground beef"/> Ground Beef<br>
+					<input class="pizzaMeat" id="meat-anchovies" type="checkbox" name="meat" value="anchovies"/> Anchovies&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+					<input class="pizzaMeat" id="meat-chicken" type="checkbox" name="meat" value="chicken"/> Chicken<br>
+		</div>
+			<!-- VEGGIES SELECTION -->
+		<div class='veg'>
+			<h3>Veggies:<br></h3>
+					<input class="pizzaVeg" class="pizzaVeg" id="veg-tomatoes" type="checkbox" name="veg" value="tomatoes"/> Tomatoes &nbsp&nbsp&nbsp
+					<input class="pizzaVeg" class="pizzaVeg" id="veg-onions" type="checkbox" name="veg" value="onions"/> Onions<br>
+					<input class="pizzaVeg" id="veg-olives" type="checkbox" name="veg" value="olives"/> Olives &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+					<input class="pizzaVeg" id="veg-greenpeppers" type="checkbox" name="veg" value="green peppers"/> Green Peppers<br>
+					<input class="pizzaVeg" id="veg-mushrooms" type="checkbox" name="veg" value="mushrooms"/> Mushrooms 
+					<input class="pizzaVeg" id="veg-pineapple" type="checkbox" name="veg" value="pineapple"/> Pineapple<br>
+					<input class="pizzaVeg" id="veg-spinach" type="checkbox" name="veg" value="spinach"/> Spinach&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+					<input class="pizzaVeg" id="veg-jalapeno" type="checkbox" name="veg" value="jalapeno"/> Jalapeno<br>
+		</div>
+				<br><br>
+		<div class='btn'>
+			<button id="add-pizza">Build<br>Another<br>Pizza</button>
+			<button id="checkout">Checkout<br>&amp<br> Pay</button>
+			<button id="clearBtn">Cancel <br>or<br>Clear Order</button>
+		</div>
+
+		<div class="table-wrap">
+			<table id="order-table">
+			</table>
+		</div>
+
+<!--==================================================================
+					MODAL HTML
+==================================================================-->
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h3>Enter payment info. to complete order:</h3>
+    </div>
+    <div class="modal-body">
+      <form><br>
+      	CC No:&nbsp&nbsp&nbsp&nbsp&nbsp<input type="text" name="CC Number"/><br><br>
+      	Exp. Date:&nbsp<input type="text" name="Exp Date"/><br><br>
+      	Sec. Code:&nbsp<input type="text" name="Sec Code"/><br>
+      	<h2 id="payTotal"><h2>
+
+      </form>
+    </div>
+    <div class="modal-footer">
+    	<button class='modal-btn'>Complete Order</button><br>
+    </div>
+  </div>
+
+</div>
+
+
+<!--==================================================================
+					END MODAL HTML
+==================================================================-->
+	
+	<script>
+	// Object template to hold info. for each pizza
+
+		function Pizza(size,crust,sauce,cheese,meat,veg) {
+			this.size="large";
+			this.crust="plain";
+			this.sauce="marinara";
+			this.cheese="regular";
+			this.meat=[];
+			this.veg=[];
+
+		};
+
+	//Object template to hold cost info. for each pizza
+
+		function Cost(size,crust,sauce,cheese,meat,veg) {
+			this.size=0;
+			this.crust=0;
+			this.sauce=0;
+			this.cheese=0;
+			this.meat=0;
+			this.veg=0;
+		};
+	//GLOBAL FUNCTIONS
+
+		function updateSize() {
+			for(var i=0; i<sizeRadioGroup.length; i++) {
+				if(sizeRadioGroup[i].checked) {
+					pizza[pizzaCount].size=sizeRadioGroup[i].value;
+				}
+
+			}
+			totalCost();
+			displayOrder();
+		};
+
+		function updateCrust() {
+			for(var i=0; i<crustRadioGroup.length; i++) {
+				if(crustRadioGroup[i].checked) {
+					pizza[pizzaCount].crust=crustRadioGroup[i].value;
+				}
+
+			}
+			totalCost();
+			displayOrder();
+		};
+
+		function updateSauce() {
+			for(var i=0; i<sauceRadioGroup.length; i++) {
+				if(sauceRadioGroup[i].checked) {
+					pizza[pizzaCount].sauce=sauceRadioGroup[i].value;
+				}
+
+			}
+			totalCost();
+			displayOrder();
+		};
+
+		function updateCheese() {
+			for(var i=0; i<cheeseRadioGroup.length; i++) {
+				if(cheeseRadioGroup[i].checked) {
+					pizza[pizzaCount].cheese=cheeseRadioGroup[i].value;
+				}
+
+			}
+			totalCost();
+			displayOrder();
+		};
+
+		function updateMeat() {
+			for(var i=0; i<meatCheckboxGroup.length; i++) {
+				if(meatCheckboxGroup[i].checked) {
+					pizza[pizzaCount].meat[i]=meatCheckboxGroup[i].value;	//if checked, set meat to this value
+				}
+				else {
+					pizza[pizzaCount].meat[i]=undefined;	//else, reset this meat to undefined
+				};
+			};
+			totalCost();
+			displayOrder();
+		};
+
+		function updateVeg() {
+			for(var i=0; i<vegCheckboxGroup.length; i++) {
+				if(vegCheckboxGroup[i].checked) {
+					pizza[pizzaCount].veg[i]=vegCheckboxGroup[i].value;	//if checked, set veg to this value
+				}
+				else {
+					pizza[pizzaCount].veg[i]=undefined;	//else, reset this veg to undefined
+				};
+
+			};
+			totalCost();
+			displayOrder();
+		};
+
+		function totalCost() {
+			var howManyMeats=0;  //counter for number of meats ordered
+			var howManyVeg=0;	//counter for number of veggies ordered
+			totalOrder=0;
+
+			switch (pizza[pizzaCount].size) {	//sets base price according to size
+			    case "personal":
+			    	cost[pizzaCount].size=6;   
+			    	break; 
+			    case "medium":
+			        cost[pizzaCount].size=10;
+			        break;
+			    case "large":
+			        cost[pizzaCount].size=14;
+			        break;
+			    case "xl":
+			    	cost[pizzaCount].size=16;
+			    	break;
+			};
+
+			if (pizza[pizzaCount].crust=="cheese-stuffed") {cost[pizzaCount].crust=3;}
+				else {cost[pizzaCount].crust=0;};  // $3.00 extra charge for cheese-stuffed crust
+
+			if (pizza[pizzaCount].cheese=="extra") {cost[pizzaCount].cheese=3;}
+				else {cost[pizzaCount].cheese=0;};	//$3.00 extra charge for extra cheese
+
+			for (var i=0;i<pizza[pizzaCount].meat.length;i++) {		//interates through meeats array, of current pizza object and counts meats
+				if (pizza[pizzaCount].meat[i]!=undefined) {howManyMeats++}
+			};
+			if (howManyMeats!=0) {
+				cost[pizzaCount].meat=howManyMeats-1;};	// first meat is complementary, so $(howManyMeats-1) is cost for extra meats
+
+			for (var j=0;j<pizza[pizzaCount].veg.length;j++) {
+				if (pizza[pizzaCount].veg[j]!=undefined) {howManyVeg++}
+			};
+			if (howManyVeg!=0) {
+				cost[pizzaCount].veg=howManyVeg-1;};	// first veggie is complementary, so $(howManyVeg-1) is cost for extra veggies
+
+			for (var k=0; k<pizzaCount+1;k++) {
+			    totalOrder=totalOrder+cost[k].size+cost[k].crust+cost[k].sauce+cost[k].cheese+cost[k].meat+cost[k].veg;
+			};
+		};
+
+		function displayOrder() {
+			var meatCounter=0;
+			var vegCounter=0;
+			var howManyMeats=0;
+			var howManyVeg=0;
+
+			orderTable = document.getElementById("order-table");  //get table element
+			var tableRows = orderTable.querySelectorAll('tr.table-row');  //get table row elements
+			tableRowCount = tableRows.length;	//how many rows in the table currently?
+			if (tableRowCount>0) {		//if rows exist...
+				// As long as <tr> has a child node, remove it
+				while (orderTable.hasChildNodes()) {   
+				    orderTable.removeChild(orderTable.firstChild);
+				}
+			};
+			tableRowCount=0;  //reset row counter to zero, since if any rows existed, they were wiped out by the preceeding loop
+			var row = orderTable.insertRow(0);  //create an empty <tr> element as the 1st table row
+			row.classList.add("table-row");
+			var cell1 = row.insertCell(0);	// Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element
+			var cell2 = row.insertCell(1);
+			cell1.classList.add("table-head");	// add class for appropriate CSS for table headings
+			cell1.classList.add("center");		//add 'center' class to 'Your Order' table heading
+			cell2.classList.add("table-head");	// add class for appropriate CSS for table headings
+			cell1.innerHTML = "Your Order:";	// put text in for table headings
+			cell2.innerHTML = "Subtotal:";
+			tableRowCount++;
+
+			for (var i=0; i<pizzaCount+1; i++) {
+				var nextRow=orderTable.insertRow(tableRowCount);  //Pizza number
+				nextRow.classList.add("table-row");
+				var cell_1 = nextRow.insertCell(0);
+				var cell_2 = nextRow.insertCell(1);
+				cell_1.innerHTML ="Pizza #" + (i+1);
+				tableRowCount++;
+
+				nextRow=orderTable.insertRow(tableRowCount);  //size row
+				nextRow.classList.add("table-row");
+				cell_1 = nextRow.insertCell(0);
+				cell_2 = nextRow.insertCell(1);
+				cell_1.classList.add("tab");
+				cell_2.classList.add("money");
+				cell_1.innerHTML =pizza[i].size + " size";
+				cell_2.innerHTML = "$" + cost[i].size + ".00";
+				tableRowCount++;
+
+				nextRow=orderTable.insertRow(tableRowCount);  //crust 
+				nextRow.classList.add("table-row");
+				cell_1 = nextRow.insertCell(0);
+				cell_2 = nextRow.insertCell(1);
+				cell_1.classList.add("tab");
+				cell_2.classList.add("money");
+				cell_1.innerHTML =pizza[i].crust + " crust";
+				cell_2.innerHTML = "$" + cost[i].crust + ".00";
+				tableRowCount++;
+
+				nextRow=orderTable.insertRow(tableRowCount);  //sauce row
+				nextRow.classList.add("table-row");
+				cell_1 = nextRow.insertCell(0);
+				cell_2 = nextRow.insertCell(1);
+				cell_1.classList.add("tab");
+				cell_2.classList.add("money");
+				cell_1.innerHTML =pizza[i].sauce + " sauce";
+				cell_2.innerHTML = "$" + cost[i].sauce + ".00";
+				tableRowCount++;
+
+				nextRow=orderTable.insertRow(tableRowCount);  //cheese row
+				nextRow.classList.add("table-row");
+				cell_1 = nextRow.insertCell(0);
+				cell_2 = nextRow.insertCell(1);
+				cell_1.classList.add("tab");
+				cell_2.classList.add("money");
+				cell_1.innerHTML =pizza[i].cheese + " cheese";
+				cell_2.innerHTML = "$" + cost[i].cheese + ".00";
+				tableRowCount++;
+
+				for (var x=0; x<pizza[i].meat.length;x++) {	//counting meats to determine comma usage in meat cell
+					if (pizza[i].meat[x]!==undefined) {
+						meatCounter++;
+					};
+				};
+
+				var meatStr='';
+				for (j=0; j<pizza[i].meat.length; j++) {	//building string to put in meat row
+					if (pizza[i].meat[j]!==undefined) {
+						meatStr+=pizza[i].meat[j];
+						howManyMeats++;
+						if (howManyMeats<meatCounter) {
+							meatStr+=", "
+						};
+					};
+				};
+
+				if (meatStr!=='') {
+					nextRow=orderTable.insertRow(tableRowCount);  //meat row
+					nextRow.classList.add("table-row");
+					cell_1 = nextRow.insertCell(0);
+					cell_2 = nextRow.insertCell(1);
+					cell_1.classList.add("tab");
+					cell_2.classList.add("money");
+					cell_1.innerHTML =meatStr;
+					cell_2.innerHTML = "$" + cost[i].meat + ".00";
+					tableRowCount++;
+				};
+				
+
+				for (var x=0; x<pizza[i].veg.length;x++) {	//counting veggies to determine comma usage in veggie cell
+						if (pizza[i].veg[x]!==undefined) {
+							vegCounter++;
+						};
+					};
+
+				var vegStr='';
+				for (j=0; j<pizza[i].veg.length; j++) {	//building string to put in meat row
+					if (pizza[i].veg[j]!==undefined) {
+						vegStr+=pizza[i].veg[j];
+						howManyVeg++;
+						if (howManyVeg<vegCounter) {
+							vegStr+=", "
+						};
+					};
+				};
+				
+				if (vegStr!=='') {
+					nextRow=orderTable.insertRow(tableRowCount);    //veggie row
+					nextRow.classList.add("table-row");
+					cell_1 = nextRow.insertCell(0);
+					cell_2 = nextRow.insertCell(1);
+					cell_1.classList.add("tab");
+					cell_2.classList.add("money");
+					cell_1.innerHTML =vegStr;
+					cell_2.innerHTML = "$" + cost[i].veg + ".00";
+					tableRowCount++;
+				};
+			};
+			
+			nextRow=orderTable.insertRow(tableRowCount);    //Total row
+			nextRow.classList.add("table-head");
+			cell_1 = nextRow.insertCell(0);
+			cell_2 = nextRow.insertCell(1);
+			cell_1.classList.add("tab");
+			cell_2.classList.add("money");
+			cell_1.innerHTML ="Total:";
+			cell_2.innerHTML = "$" + totalOrder + ".00";
+			tableRowCount++;
+		};	
+
+		function nextPizza() {
+			pizzaCount++;
+			pizza.push(new Pizza('large','plain','marinara','regular','',''));  //new instance of pizza
+			cost.push(new Cost(0,0,0,0,0,0)); //new instance of cost
+			resetControls();
+		};
+
+		function resetControls() {
+			sizeRadioGroup[2].checked=true;
+			crustRadioGroup[0].checked=true;
+			sauceRadioGroup[0].checked=true;
+			cheeseRadioGroup[0].checked=true;
+			for(i=0;i<meatCheckboxGroup.length;i++) {
+				meatCheckboxGroup[i].checked=false;
+			};
+
+			for(j=0;j<vegCheckboxGroup.length;j++) {
+				vegCheckboxGroup[j].checked=false;
+			};
+		};
+
+		function resetAll() {
+			location.reload(); //reload page, resetting all data and controls
+		};
+	//MAIN PROGRAM START//
+		var pizzaCount=0;	//initialize pizza number
+		var pizza=[];		//initialize array to hold pizzas
+		var cost=[];		//initialize array to hold cost info
+		var totalOrder=0;
+		pizza.push(new Pizza('large','plain','marinara','regular','',''));   //generate new instance of pizza object to hold info. for 1st pizza
+		cost.push(new Cost(0,0,0,0,0,0));	//generate new instance of cost object to hold cost info. for 1st pizza
+		// Query <table> element with id="order-table":
+
+		var orderTable;
+		var tableRowCount=0;
+		totalCost();
+		displayOrder();
+
+	/*=================================================================
+				EVENT LISTENERS
+	==================================================================*/
+		var sizeRadioGroup=document.getElementsByClassName('pizzaSize');  //generate node list with all elements having class name 'pizzaSize'
+		for (var j=0; j<sizeRadioGroup.length; j++) {		//loop iterates through node list to attach event listener to all nodes in the class
+			sizeRadioGroup[j].addEventListener("change",updateSize);  //attach event listener for change to radio button
+		};
+
+		var crustRadioGroup=document.getElementsByClassName('pizzaCrust');  //generate node list with all elements having class name 'pizzaCrust'
+		for (var j=0; j<crustRadioGroup.length; j++) {		//loop iterates through node list to attach event listener to all nodes in the class
+			crustRadioGroup[j].addEventListener("change",updateCrust);  //attach event listener for change to radio button
+		};
+
+		var sauceRadioGroup=document.getElementsByClassName('pizzaSauce');  //generate node list with all elements having class name 'pizzaSauce'
+		for (var j=0; j<sauceRadioGroup.length; j++) {		//loop iterates through node list to attach event listener to all nodes in the class
+			sauceRadioGroup[j].addEventListener("change",updateSauce);  //attach event listener for change to radio button
+		};
+
+		var cheeseRadioGroup=document.getElementsByClassName('pizzaCheese');//generate node list with all elements with class name 'pizzaCheese'
+		for (var j=0; j<cheeseRadioGroup.length; j++) {		//loop iterates through node list to attach event listener to all nodes in the class
+			cheeseRadioGroup[j].addEventListener("change",updateCheese);  //attach event listener for change to radio button
+		};
+
+		var meatCheckboxGroup=document.getElementsByClassName('pizzaMeat');  //generate node list with all elements having class name 'pizzaSize'
+		for (var j=0; j<meatCheckboxGroup.length; j++) {	//loop iterates through node list to attach event listener to all nodes in the class
+			meatCheckboxGroup[j].addEventListener("change",updateMeat);  //attach event listener for change to check box
+		};
+
+		var vegCheckboxGroup=document.getElementsByClassName('pizzaVeg');  //generate node list with all elements having class name 'pizzaSize'
+		for (var j=0; j<vegCheckboxGroup.length; j++) {		//loop iterates through node list to attach event listener to all nodes in the class
+			vegCheckboxGroup[j].addEventListener("change",updateVeg);  //attach event listener for change to check box
+		};
+
+		var addPizzaButton=document.getElementById('add-pizza');
+		addPizzaButton.addEventListener("click",nextPizza);
+		addPizzaButton.addEventListener("click",totalCost);
+		addPizzaButton.addEventListener("click",displayOrder);
+
+		var clearButton=document.getElementById('clearBtn');
+		clearButton.addEventListener("click",resetAll);
+
+/*====================================================================
+				MODAL JS
+=====================================================================*/
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("checkout");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+    var totalStr="Order Total: $"+totalOrder+".00"
+    var totalAmt = document.getElementById('payTotal');
+    totalAmt.innerHTML=totalStr;
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+/*====================================================================
+				END MODAL JS
+=====================================================================*/
+		
+	</script>
+	</body>
+</html>
