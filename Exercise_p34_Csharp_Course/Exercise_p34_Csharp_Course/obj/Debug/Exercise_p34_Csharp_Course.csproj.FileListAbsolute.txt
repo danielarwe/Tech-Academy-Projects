@@ -1,0 +1,6 @@
+C:\Users\Student\Desktop\C#\Exercise_p34_Csharp_Course\Exercise_p34_Csharp_Course\bin\Debug\Exercise_p34_Csharp_Course.exe.config
+C:\Users\Student\Desktop\C#\Exercise_p34_Csharp_Course\Exercise_p34_Csharp_Course\bin\Debug\Exercise_p34_Csharp_Course.exe
+C:\Users\Student\Desktop\C#\Exercise_p34_Csharp_Course\Exercise_p34_Csharp_Course\bin\Debug\Exercise_p34_Csharp_Course.pdb
+C:\Users\Student\Desktop\C#\Exercise_p34_Csharp_Course\Exercise_p34_Csharp_Course\obj\Debug\Exercise_p34_Csharp_Course.csprojResolveAssemblyReference.cache
+C:\Users\Student\Desktop\C#\Exercise_p34_Csharp_Course\Exercise_p34_Csharp_Course\obj\Debug\Exercise_p34_Csharp_Course.exe
+C:\Users\Student\Desktop\C#\Exercise_p34_Csharp_Course\Exercise_p34_Csharp_Course\obj\Debug\Exercise_p34_Csharp_Course.pdb
